@@ -1,6 +1,6 @@
 # UI
 
-Shared components in `@sunnie/ui`. The Next.js app provides a small preview. Add documentation to the app when needed.
+Shared components in `@sunnie/ui`. The Next.js app shows a component grid, live examples, and props.
 
 The initial setup uses this command:
 
@@ -21,7 +21,7 @@ pnpm install
 pnpm dev
 ```
 
-The package names are local defaults. Neither package has been published.
+The UI package is private and is distributed through GitHub releases. Registry publication is disabled.
 
 ## Checks
 
@@ -32,6 +32,20 @@ pnpm build
 
 `check` runs Oxlint, Oxfmt, and TypeScript. `build` builds the UI package and the Next.js app. Use `pnpm fmt` to format files.
 
+## Component docs
+
+Run `pnpm dev` and open the URL shown in the terminal. The home page shows all components. Select a card to see its examples and props. Use `⌘K` (or `Ctrl+K`) to find a component from any page. Use the theme button beside search or press `D` to change the color theme. Props appear below the examples.
+
+- `app/_docs/catalog.ts`: Component names and example states.
+- `app/_docs/examples.tsx`: Live examples built from the package components.
+- `scripts/generate-docs.mjs`: Reads public props from TypeScript, including inherited types and wrapper defaults.
+
+Props are generated when you start the app, build it, or run the type check. After a prop change during development, run `pnpm docs:generate` to refresh the table. Generated files stay out of Git and the published UI package.
+
+To add a component, add its entry and state names to the catalog, then add its examples. Keep the props in the component types; no separate props list is needed.
+
+The layout references [Kumo](https://github.com/cloudflare/kumo), [shadcn/ui](https://github.com/shadcn-ui/ui), and [coss](https://github.com/cosscom/coss). The docs code is written for this package.
+
 ## Package contents
 
 - `components/ui`: All 61 component modules available for this preset.
@@ -39,13 +53,19 @@ pnpm build
 - `styles.css`: Shared theme and Tailwind CSS source paths.
 - `lib`: Shared utilities.
 - `index.ts`: Main package exports.
-- `app`: Preview app and future documentation.
+- `app`: Component gallery and documentation.
 
 `pnpm pack` creates an installable archive. It includes compiled components, type declarations, and styles. It excludes the Next.js app.
 
 ## Use in another app
 
-Install the package archive until a registry release is available. The app must use React 19 and Tailwind CSS 4.
+Install the compiled Git release. The app must use React 19 and Tailwind CSS 4.
+
+```sh
+pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.1'
+```
+
+GitHub access is required. Update the tag and lockfile to use a newer release. The `v0.1.0` and `v0.2.0` releases contain source tags and built package archives; direct Git installation starts with `v0.2.1`.
 
 ```tsx
 import { Button, Input, Dialog, DialogContent } from "@sunnie/ui";
@@ -82,4 +102,6 @@ Keep reusable components in `components/ui`. Use relative imports with `.js` ext
 
 Check generated updates before overwriting files. Some files have small changes for strict TypeScript checks, package imports, and client component boundaries. The mobile hook uses `useSyncExternalStore`. Local lint exceptions preserve the preset's ARIA roles, input focus behaviour, and carousel state setup. Run the checks and build before a release.
 
-The local configuration dependency uses `file:../config`. After a configuration release, replace it with a version dependency. Existing projects receive changes when they update their package versions and rebuild.
+The local configuration dependency uses `file:../config` for UI development. Compiled Git releases exclude development dependencies, so consuming apps do not need that folder.
+
+For a new release, update `version` in `package.json`, run the checks, and commit the source changes. Then run `pnpm release`. The command builds the UI, pushes a separate compiled package tag, and creates a GitHub release with `gh`. Use `pnpm release --prepare-only` to build the package archive without publishing it.

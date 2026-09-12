@@ -167,7 +167,7 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        "grid min-w-32 items-start gap-1.5 rounded-xl bg-popover px-2.5 py-1.5 text-xs text-popover-foreground shadow-lg ring-1 ring-foreground/5 dark:ring-foreground/10",
+        "grid min-w-32 items-start gap-1.5 rounded-xl bg-popover px-2.5 py-1.5 text-xs text-popover-foreground shadow-lg ring ring-foreground/5 dark:ring-foreground/10",
         className,
       )}
     >
@@ -202,8 +202,7 @@ function ChartTooltipContent({
                             {
                               "h-2.5 w-2.5": indicator === "dot",
                               "w-1": indicator === "line",
-                              "w-0 border-[1.5px] border-dashed bg-transparent":
-                                indicator === "dashed",
+                              "w-0 border border-dashed bg-transparent": indicator === "dashed",
                               "my-0.5": nestLabel && indicator === "dashed",
                             },
                           )}

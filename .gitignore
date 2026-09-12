@@ -39,3 +39,6 @@ next-env.d.ts
 # UI package
 /dist/
 *.tgz
+
+# Generated docs props
+/app/_docs/generated/

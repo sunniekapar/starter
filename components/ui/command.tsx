@@ -14,7 +14,7 @@ function Command({ className, ...props }: React.ComponentProps<typeof CommandPri
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex size-full flex-col overflow-hidden rounded-4xl bg-popover p-1 text-popover-foreground",
+        "flex size-full flex-col overflow-hidden rounded-[calc(min(var(--radius-4xl),var(--spacing)*4.5)+var(--spacing)*2+var(--default-border-width))] bg-popover p-1 text-popover-foreground",
         className,
       )}
       {...props}
@@ -43,7 +43,10 @@ function CommandDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent
-        className={cn("top-1/3 translate-y-0 overflow-hidden rounded-4xl! p-0", className)}
+        className={cn(
+          "top-1/3 translate-y-0 overflow-hidden rounded-[calc(min(var(--radius-4xl),var(--spacing)*4.5)+var(--spacing)*2+var(--default-border-width))]! p-0",
+          className,
+        )}
         showCloseButton={showCloseButton}
       >
         {children}
@@ -58,11 +61,11 @@ function CommandInput({
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div data-slot="command-input-wrapper" className="p-1 pb-0">
-      <InputGroup className="h-9 bg-input/50">
+      <InputGroup className="h-9 bg-input/50 has-[[data-slot=command-input]:focus-visible]:border-ring has-[[data-slot=command-input]:focus-visible]:ring-2 has-[[data-slot=command-input]:focus-visible]:ring-ring/30">
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}

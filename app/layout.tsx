@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { DocsShell } from "./_docs/docs-shell";
 import { Geist_Mono, Inter } from "next/font/google";
 
 import "./globals.css";
@@ -11,6 +13,11 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 });
 
+export const metadata: Metadata = {
+  title: "Components · sunnie/ui",
+  description: "Component examples, states, and props for @sunnie/ui.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +30,9 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <DocsShell>{children}</DocsShell>
+        </ThemeProvider>
       </body>
     </html>
   );
