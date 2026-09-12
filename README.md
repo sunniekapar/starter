@@ -62,10 +62,10 @@ The layout references [Kumo](https://github.com/cloudflare/kumo), [shadcn/ui](ht
 Install the compiled Git release. The app must use React 19 and Tailwind CSS 4.
 
 ```sh
-pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.1'
+pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.00'
 ```
 
-GitHub access is required. Update the tag and lockfile to use a newer release. The `v0.1.0` and `v0.2.0` releases contain source tags and built package archives; direct Git installation starts with `v0.2.1`.
+GitHub access is required. Update the tag and lockfile to use a newer release. The `v0.1.00` release preserves the original source commit and a compiled package archive. Direct Git installation starts with `v0.2.00`.
 
 ```tsx
 import { Button, Input, Dialog, DialogContent } from "@sunnie/ui";

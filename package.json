@@ -1,6 +1,6 @@
 {
   "name": "@sunnie/ui",
-  "version": "0.2.1",
+  "version": "0.2.00",
   "private": true,
   "description": "Shared UI components with a Next.js preview app.",
   "files": [
