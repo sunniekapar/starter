@@ -4,11 +4,12 @@ import ts from "typescript";
 import { catalog } from "../app/_docs/catalog.ts";
 
 // Read the public component types without inherited React, DOM, and Base UI rendering props.
-const root = process.cwd();
-const configFile = ts.readConfigFile("tsconfig.json", ts.sys.readFile);
+const docsRoot = path.resolve(import.meta.dirname, "..");
+const root = path.resolve(docsRoot, "../../packages/ui");
+const configFile = ts.readConfigFile(path.join(root, "tsconfig.json"), ts.sys.readFile);
 const config = ts.parseJsonConfigFileContent(configFile.config, ts.sys, root);
 const files = fs
-  .readdirSync("components/ui")
+  .readdirSync(path.join(root, "src/components/ui"))
   .filter((file) => file.endsWith(".tsx"))
   .sort();
 const actualSlugs = files.map((file) => file.replace(/\.tsx$/, ""));
@@ -21,7 +22,7 @@ if (missing.length || unknown.length || new Set(catalogSlugs).size !== catalogSl
   );
 }
 const program = ts.createProgram(
-  files.map((file) => path.join(root, "components/ui", file)),
+  files.map((file) => path.join(root, "src/components/ui", file)),
   config.options,
 );
 const checker = program.getTypeChecker();
@@ -30,7 +31,7 @@ const inheritedPropPattern =
   /[/\\]@types[/\\]react[/\\]|[/\\]typescript[/\\]lib[/\\]|[/\\]@base-ui[/\\]react[/\\]internals[/\\]types\.d\.[mc]?ts$/;
 
 for (const file of files) {
-  const source = program.getSourceFile(path.join(root, "components/ui", file));
+  const source = program.getSourceFile(path.join(root, "src/components/ui", file));
   const moduleSymbol = checker.getSymbolAtLocation(source);
   const parts = [];
   for (const exported of checker.getExportsOfModule(moduleSymbol)) {
@@ -134,8 +135,9 @@ for (const file of files) {
   );
   output[slug] = parts;
 }
-fs.mkdirSync("app/_docs/generated", { recursive: true });
-fs.writeFileSync("app/_docs/generated/props.json", JSON.stringify(output));
+const outputDir = path.join(docsRoot, "app/_docs/generated");
+fs.mkdirSync(outputDir, { recursive: true });
+fs.writeFileSync(path.join(outputDir, "props.json"), JSON.stringify(output));
 console.log(
   `Read props for ${files.length} component files (${Object.values(output).flat().length} exports).`,
 );

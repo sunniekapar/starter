@@ -3,9 +3,11 @@
   "compilerOptions": {
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "jsx": "react-jsx",
-    "rootDir": ".",
-    "outDir": "dist"
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["index.ts", "components/ui/**/*.tsx", "lib/**/*.ts", "hooks/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "oxlint.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "../styles.css";
+@import "@sunnie/ui/styles.css";
 
 .component-grid {
   --grid-columns: 1;

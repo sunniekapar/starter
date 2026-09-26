@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import * as UI from "@/index";
+import * as UI from "@sunnie/ui";
 import { Bar, BarChart, Line, LineChart, Area, AreaChart, XAxis } from "recharts";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Add01Icon, File01Icon, Search01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";

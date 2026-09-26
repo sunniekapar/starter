@@ -1,17 +1,5 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@sunnie/ui/accordion";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@sunnie/ui/table";
 
 export type PropDoc = {
   name: string;

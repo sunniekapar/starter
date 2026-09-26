@@ -11,8 +11,8 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@sunnie/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@sunnie/ui/dialog";
 import {
   Command,
   CommandEmpty,
@@ -20,8 +20,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Kbd } from "@/components/ui/kbd";
+} from "@sunnie/ui/command";
+import { Kbd } from "@sunnie/ui/kbd";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Moon02Icon, Sun03Icon, Search01Icon } from "@hugeicons/core-free-icons";
 import { catalog } from "./catalog";

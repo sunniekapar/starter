@@ -4,18 +4,142 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@hugeicons/core-free-icons':
+      specifier: ^4.3.2
+      version: 4.3.2
+    '@hugeicons/react':
+      specifier: ^1.1.10
+      version: 1.1.10
+    '@types/node':
+      specifier: ^20
+      version: 20.19.43
+    '@types/react':
+      specifier: ^19
+      version: 19.3.0
+    '@types/react-dom':
+      specifier: ^19
+      version: 19.3.0
+    oxfmt:
+      specifier: ^0.67.0
+      version: 0.67.0
+    oxlint:
+      specifier: ^1.82.0
+      version: 1.82.0
+    react:
+      specifier: 19.2.4
+      version: 19.2.4
+    react-day-picker:
+      specifier: ^10.0.1
+      version: 10.0.1
+    react-dom:
+      specifier: 19.2.4
+      version: 19.2.4
+    recharts:
+      specifier: 3.8.0
+      version: 3.8.0
+    tailwindcss:
+      specifier: ^4
+      version: 4.3.3
+    typescript:
+      specifier: ^5
+      version: 5.9.3
+
 importers:
 
   .:
+    devDependencies:
+      '@sunnie/config':
+        specifier: workspace:*
+        version: link:packages/config
+      oxfmt:
+        specifier: 'catalog:'
+        version: 0.67.0
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.82.0
+
+  apps/docs:
+    dependencies:
+      '@hugeicons/core-free-icons':
+        specifier: 'catalog:'
+        version: 4.3.2
+      '@hugeicons/react':
+        specifier: 'catalog:'
+        version: 1.1.10(react@19.2.4)
+      '@sunnie/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: 16.2.6
+        version: 16.2.6(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.4
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.4(react@19.2.4)
+      recharts:
+        specifier: 'catalog:'
+        version: 3.8.0(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react-is@19.3.0)(react@19.2.4)(redux@5.0.1)
+    devDependencies:
+      '@sunnie/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@tailwindcss/postcss':
+        specifier: ^4
+        version: 4.3.3
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.19.43
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.3.0(@types/react@19.3.0)
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.82.0
+      portless:
+        specifier: ^0.15.6
+        version: 0.15.6
+      react-day-picker:
+        specifier: 'catalog:'
+        version: 10.0.1(@types/react@19.3.0)(react@19.2.4)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.3.3
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  packages/config:
+    devDependencies:
+      oxfmt:
+        specifier: 'catalog:'
+        version: 0.67.0
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.82.0
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  packages/ui:
     dependencies:
       '@base-ui/react':
         specifier: ^1.8.0
         version: 1.8.0(@date-fns/tz@1.5.0)(@types/react@19.3.0)(date-fns@4.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@hugeicons/core-free-icons':
-        specifier: ^4.3.2
+        specifier: 'catalog:'
         version: 4.3.2
       '@hugeicons/react':
-        specifier: ^1.1.10
+        specifier: 'catalog:'
         version: 1.1.10(react@19.2.4)
       '@shadcn/react':
         specifier: ^0.3.1
@@ -39,13 +163,13 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-day-picker:
-        specifier: ^10.0.1
+        specifier: 'catalog:'
         version: 10.0.1(@types/react@19.3.0)(react@19.2.4)
       react-resizable-panels:
         specifier: ^4.12.4
         version: 4.12.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       recharts:
-        specifier: 3.8.0
+        specifier: 'catalog:'
         version: 3.8.0(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react-is@19.3.0)(react@19.2.4)(redux@5.0.1)
       shadcn:
         specifier: ^4.21.0
@@ -55,46 +179,28 @@ importers:
         version: 1.4.0
     devDependencies:
       '@sunnie/config':
-        specifier: file:../config
-        version: file:../config(oxfmt@0.67.0)(oxlint@1.82.0)
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.3.3
-      '@types/node':
-        specifier: ^20
-        version: 20.19.43
+        specifier: workspace:*
+        version: link:../config
       '@types/react':
-        specifier: ^19
+        specifier: 'catalog:'
         version: 19.3.0
       '@types/react-dom':
-        specifier: ^19
+        specifier: 'catalog:'
         version: 19.3.0(@types/react@19.3.0)
-      next:
-        specifier: 16.2.6
-        version: 16.2.6(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      next-themes:
-        specifier: ^0.4.6
-        version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      oxfmt:
-        specifier: ^0.67.0
-        version: 0.67.0
       oxlint:
-        specifier: ^1.82.0
+        specifier: 'catalog:'
         version: 1.82.0
-      portless:
-        specifier: ^0.15.6
-        version: 0.15.6
       react:
-        specifier: 19.2.4
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
-        specifier: 19.2.4
+        specifier: 'catalog:'
         version: 19.2.4(react@19.2.4)
       tailwindcss:
-        specifier: ^4
+        specifier: 'catalog:'
         version: 4.3.3
       typescript:
-        specifier: ^5
+        specifier: 'catalog:'
         version: 5.9.3
 
 packages:
@@ -991,13 +1097,6 @@ packages:
 
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
-
-  '@sunnie/config@file:../config':
-    resolution: {directory: ../config, type: directory}
-    engines: {node: '>=22.18.0'}
-    peerDependencies:
-      oxfmt: ^0.67.0
-      oxlint: ^1.82.0
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -3365,11 +3464,6 @@ snapshots:
   '@standard-schema/spec@1.1.0': {}
 
   '@standard-schema/utils@0.3.0': {}
-
-  '@sunnie/config@file:../config(oxfmt@0.67.0)(oxlint@1.82.0)':
-    dependencies:
-      oxfmt: 0.67.0
-      oxlint: 1.82.0
 
   '@swc/helpers@0.5.15':
     dependencies:

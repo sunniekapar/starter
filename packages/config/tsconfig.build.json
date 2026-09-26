@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["oxfmt.mjs", "oxlint/**/*.mjs"],
+  "exclude": ["dist", "node_modules"]
+}

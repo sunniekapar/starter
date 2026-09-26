@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@sunnie/ui/input";
+import { Button } from "@sunnie/ui/button";
 import { catalog } from "./catalog";
 import { Example, GridArrow } from "./examples";
 import { ComponentSearchTrigger, ThemeToggle } from "./docs-shell";
