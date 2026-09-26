@@ -31,7 +31,10 @@ export function ComponentPage({
       className="mx-auto max-w-[1280px] px-[clamp(20px,4vw,64px)] pt-11 pb-12 max-[700px]:pt-7"
     >
       <div className="mb-8 flex items-center justify-between gap-5 max-[700px]:flex-wrap max-[700px]:items-start">
-        <Link href="/" className="inline-block text-sm text-muted-foreground hover:text-foreground">
+        <Link
+          href="/components"
+          className="inline-block text-sm text-muted-foreground hover:text-foreground"
+        >
           All components
         </Link>
         <DocsControls />

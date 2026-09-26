@@ -45,3 +45,4 @@ dist/
 
 # Package archives
 /artifacts/
+.vercel

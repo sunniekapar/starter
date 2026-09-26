@@ -7,6 +7,7 @@ import { Button } from "@sunnie/ui/button";
 import { catalog } from "./catalog";
 import { Example, GridArrow } from "./examples";
 import { ComponentSearchTrigger, ThemeToggle } from "./docs-shell";
+import { DocsNavigation } from "./docs-navigation";
 
 export function ComponentGrid() {
   const [query, setQuery] = useState("");
@@ -18,16 +19,13 @@ export function ComponentGrid() {
       id="main-content"
       className="mx-auto max-w-[1600px] px-[clamp(20px,4vw,64px)] pt-11 pb-12 max-[700px]:pt-7"
     >
+      <h1 className="sr-only">Components</h1>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
-        <div className="flex items-baseline gap-3">
-          <h1 className="text-[clamp(24px,3vw,30px)] leading-[1.2] font-medium tracking-[-0.045em]">
-            Components
-          </h1>
-        </div>
+        <DocsNavigation active="components" />
         <div className="flex items-center gap-2">
           <div className="relative w-64 max-[700px]:w-[min(256px,calc(100vw-84px))]">
             <Input
-              className="pr-14"
+              className="h-8 pr-14"
               type="search"
               aria-label="Find a component"
               placeholder="Find a component…"

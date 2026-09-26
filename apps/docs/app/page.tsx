@@ -1,5 +1,5 @@
-import { ComponentGrid } from "./_docs/component-grid";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <ComponentGrid />;
+  redirect("/components");
 }

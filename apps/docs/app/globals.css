@@ -57,3 +57,89 @@
     --grid-columns: 4;
   }
 }
+
+@keyframes easing-time {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(180px);
+  }
+}
+
+@keyframes easing-progress {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-180px);
+  }
+}
+
+@keyframes easing-rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes easing-scale {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes easing-translate {
+  from {
+    transform: translateX(-40px);
+  }
+  to {
+    transform: translateX(40px);
+  }
+}
+
+.easing-marker-x {
+  animation: easing-time var(--easing-duration) linear infinite;
+}
+
+.easing-marker-y {
+  animation: easing-progress var(--easing-duration) var(--easing-preview) infinite;
+}
+
+.easing-square {
+  animation: var(--easing-animation) var(--easing-duration) var(--easing-preview) infinite;
+}
+
+.easing-tile > button {
+  transition: opacity 150ms var(--ease-out);
+}
+
+.easing-grid[data-previewing] .easing-tile:not([data-preview]) > button {
+  opacity: 0.3;
+}
+
+@media (hover: none) {
+  .easing-copy-icon {
+    opacity: 1;
+    translate: 0;
+    scale: 1;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .easing-tile > button {
+    transition: none;
+  }
+
+  .easing-marker-x,
+  .easing-marker-y,
+  .easing-square {
+    animation: none;
+  }
+}

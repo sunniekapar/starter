@@ -46,6 +46,9 @@ catalogs:
       specifier: ^5
       version: 5.9.3
 
+patchedDependencies:
+  cmdk@1.1.1: 24fcbf4d6750998acf9d3de90508802b844d0a8dca09996c2ef4821cb945693d
+
 importers:
 
   .:
@@ -149,7 +152,7 @@ importers:
         version: 0.7.1
       cmdk:
         specifier: ^1.1.1
-        version: 1.1.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 1.1.1(patch_hash=24fcbf4d6750998acf9d3de90508802b844d0a8dca09996c2ef4821cb945693d)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       cn:
         specifier: ^0.2.6
         version: 0.2.6
@@ -3692,7 +3695,7 @@ snapshots:
 
   clsx@2.1.1: {}
 
-  cmdk@1.1.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  cmdk@1.1.1(patch_hash=24fcbf4d6750998acf9d3de90508802b844d0a8dca09996c2ef4821cb945693d)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.2.4)
       '@radix-ui/react-dialog': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
