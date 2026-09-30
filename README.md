@@ -39,20 +39,20 @@ For docs hosting, set the project root to `apps/docs`. Run `pnpm --filter @sunni
 
 ## Use UI in another app
 
-The UI package contains compiled JavaScript, type declarations, and `styles.css`. It excludes docs, Next.js, and config tools. It requires React 19 and Tailwind CSS 4.
+The UI package contains compiled JavaScript, type declarations, and the `styles.css` and `typeset.css` files. It excludes docs, Next.js, and config tools. It requires React 19 and Tailwind CSS 4.
 
 For a local archive:
 
 ```sh
 pnpm pack:ui
 # Run in the consuming app. Use the actual archive path.
-pnpm add /path/to/starter/artifacts/sunnie-ui-0.2.0.tgz
+pnpm add /path/to/starter/artifacts/sunnie-ui-0.2.1.tgz
 ```
 
 For an existing compiled Git release:
 
 ```sh
-pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.00'
+pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.1'
 ```
 
 GitHub access is required. Install a compiled release tag. The source branch is a private workspace root. The workspace version uses valid semver, `0.2.0`; existing Git tags keep their original names.
@@ -70,9 +70,11 @@ Add these imports to the app's global CSS:
 ```css
 @import "tailwindcss";
 @import "@sunnie/ui/styles.css";
+/* Optional text styles for articles and other prose. */
+@import "@sunnie/ui/typeset.css";
 ```
 
-The stylesheet registers the compiled components with Tailwind. Set `--font-sans` in the consuming app.
+The stylesheet registers the compiled components with Tailwind. Set `--font-sans` and `--font-mono` in the consuming app. The optional `typeset.css` file styles content within `.typeset`. Use `.not-typeset` to exclude a block. Section headings use weight 550; subheadings use 500. Override the `--typeset-*` variables to change spacing.
 
 ## Component docs
 

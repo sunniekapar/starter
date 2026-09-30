@@ -1,11 +1,12 @@
 {
   "name": "@sunnie/ui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Shared React components, hooks, utilities, and Tailwind CSS styles.",
   "files": [
     "dist",
-    "styles.css"
+    "styles.css",
+    "typeset.css"
   ],
   "type": "module",
   "sideEffects": [
@@ -36,7 +37,8 @@
     "./lib/*": {
       "types": "./src/lib/*.ts",
       "import": "./dist/lib/*.js"
-    }
+    },
+    "./typeset.css": "./typeset.css"
   },
   "publishConfig": {
     "exports": {
@@ -64,7 +66,8 @@
       "./lib/*": {
         "types": "./dist/lib/*.d.ts",
         "import": "./dist/lib/*.js"
-      }
+      },
+      "./typeset.css": "./typeset.css"
     }
   },
   "scripts": {
