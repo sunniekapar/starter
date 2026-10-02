@@ -9,8 +9,9 @@
     --typeset-font-heading: var(--font-sans);
     --typeset-font-mono: var(--font-mono);
     --typeset-size: 1em;
-    --typeset-leading: 1.75;
-    --typeset-flow: 1.25em;
+    --typeset-leading: 1.625;
+    --typeset-flow: 1em;
+    --typeset-title-flow: 1.5em;
     --typeset-section-gap: 5em;
     --typeset-subsection-gap: 2.5em;
     --typeset-subheading-flow: 0.75em;
@@ -49,7 +50,7 @@
     }
     &:where(h1) {
       font-size: 1em;
-      line-height: 1.5;
+      line-height: var(--typeset-leading);
       margin-block-start: var(--typeset-flow);
     }
     &:where(h2) {
@@ -87,7 +88,10 @@
     }
 
     /* Headings own the space below them. */
-    &:where(h1 + *, h2 + *) {
+    &:where(h1 + *) {
+      margin-block-start: var(--typeset-title-flow);
+    }
+    &:where(h2 + *) {
       margin-block-start: 1em;
     }
     &:where(h3 + *, h4 + *, h5 + *, h6 + *) {
