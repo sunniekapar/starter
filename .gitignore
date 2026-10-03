@@ -1,5 +1,5 @@
 # dependencies
-/node_modules
+node_modules/
 /.pnpm-store/
 /.pnp
 .pnp.*
@@ -13,8 +13,8 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+.next/
+out/
 
 # production
 /build
@@ -37,8 +37,12 @@ pnpm-debug.log*
 next-env.d.ts
 
 # UI package
-/dist/
+dist/
 *.tgz
 
 # Generated docs props
-/app/_docs/generated/
+/apps/docs/app/_docs/generated/
+
+# Package archives
+/artifacts/
+.vercel
