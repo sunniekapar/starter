@@ -46,16 +46,16 @@ For a local archive:
 ```sh
 pnpm pack:ui
 # Run in the consuming app. Use the actual archive path.
-pnpm add /path/to/starter/artifacts/sunnie-ui-0.2.1.tgz
+pnpm add /path/to/starter/artifacts/sunnie-ui-0.2.3.tgz
 ```
 
 For an existing compiled Git release:
 
 ```sh
-pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.1'
+pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.03'
 ```
 
-GitHub access is required. Install a compiled release tag. The source branch is a private workspace root. The workspace version uses valid semver, `0.2.0`; existing Git tags keep their original names.
+GitHub access is required. Install a compiled release tag. The source branch is a private workspace root. The workspace version uses valid semver, `0.2.3`; existing Git tags keep their original names.
 
 ```tsx
 import { Button } from "@sunnie/ui/button";
@@ -74,7 +74,7 @@ Add these imports to the app's global CSS:
 @import "@sunnie/ui/typeset.css";
 ```
 
-The stylesheet registers the compiled components with Tailwind. Set `--font-sans` and `--font-mono` in the consuming app. The optional `typeset.css` file styles content within `.typeset`. Use `.not-typeset` to exclude a block. Section headings use weight 550; subheadings use 500. Override the `--typeset-*` variables to change spacing.
+The stylesheet registers the compiled components with Tailwind. Set `--font-sans` and `--font-mono` in the consuming app. The optional `typeset.css` file styles content within `.typeset`. Use `.not-typeset` to exclude a block. Section headings use weight 550; subheadings use 400. Override the `--typeset-*` variables to change spacing.
 
 ## Component docs
 

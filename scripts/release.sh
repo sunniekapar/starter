@@ -26,7 +26,11 @@ version=$(node -p 'JSON.parse(require("node:fs").readFileSync(process.argv[1], "
 
 # Keep the existing UI tag format. Config has a separate version and tag prefix.
 tag="v$version"
-[[ $package != config ]] || tag="config/v$version"
+if [[ $package == config ]]; then
+  tag="config/v$version"
+else
+  printf -v tag 'v%s.%02d' "${version%.*}" "${version##*.}"
+fi
 source_commit=$(git rev-parse HEAD)
 git check-ref-format "refs/tags/$tag"
 
