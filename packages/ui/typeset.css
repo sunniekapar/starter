@@ -61,25 +61,25 @@
     &:where(h3) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 400;
+      font-weight: 450;
       margin-block-start: var(--typeset-subsection-gap);
     }
     &:where(h4) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 400;
+      font-weight: 450;
       margin-block-start: var(--typeset-subsection-gap);
     }
     &:where(h5) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 400;
+      font-weight: 450;
       margin-block-start: var(--typeset-subsection-gap);
     }
     &:where(h6) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 400;
+      font-weight: 450;
       margin-block-start: var(--typeset-subsection-gap);
     }
     /* Anchors. */
