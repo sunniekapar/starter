@@ -1,107 +1,117 @@
-# UI
+# Starter
 
-Shared components in `@sunnie/ui`. The Next.js app shows a component grid, live examples, and props.
+A pnpm workspace for shared config, UI components, and component docs.
 
-The initial setup uses this command:
-
-```sh
-pnpm dlx shadcn@latest init --preset b1VlJAwM --template next
+```text
+apps/docs/        @sunnie/docs    Next.js docs app (private)
+packages/ui/      @sunnie/ui      React components, hooks, utilities, and styles
+packages/config/  @sunnie/config  Oxlint, Oxfmt, and TypeScript settings
 ```
 
-The preset uses Base UI, Luma, neutral colours, Hugeicons, and Inter.
+The docs depend on UI. UI uses config during development. Config has no dependency on UI or docs. Each package declares its own dependencies. The root contains workspace commands. Shared tool and React versions are set in the pnpm catalog.
 
 ## Local setup
 
-Use Node.js 22.18 or later and pnpm 11.25.0. Keep the configuration repository at `../config`.
+Use Node.js 22.18 or later and pnpm 11.25.0.
 
 ```sh
-pnpm --dir ../config install
-pnpm --dir ../config build
 pnpm install
 pnpm dev
 ```
 
-The UI package is private and is distributed through GitHub releases. Registry publication is disabled.
+`dev` builds the packages, then starts the UI compiler in watch mode and the docs server. UI edits update the compiled package used by the docs. Open the URL shown in the terminal.
 
-## Checks
-
-```sh
-pnpm check
-pnpm build
-```
-
-`check` runs Oxlint, Oxfmt, and TypeScript. `build` builds the UI package and the Next.js app. Use `pnpm fmt` to format files.
-
-## Component docs
-
-Run `pnpm dev` and open the URL shown in the terminal. The home page shows all components. Select a card to see its examples and props. Use `⌘K` (or `Ctrl+K`) to find a component from any page. Use the theme button beside search or press `D` to change the color theme. Props appear below the examples.
-
-- `app/_docs/catalog.ts`: Component names and example states.
-- `app/_docs/examples.tsx`: Live examples built from the package components.
-- `scripts/generate-docs.mjs`: Reads public props from TypeScript, including inherited types and wrapper defaults.
-
-Props are generated when you start the app, build it, or run the type check. After a prop change during development, run `pnpm docs:generate` to refresh the table. Generated files stay out of Git and the published UI package.
-
-To add a component, add its entry and state names to the catalog, then add its examples. Keep the props in the component types; no separate props list is needed.
-
-The layout references [Kumo](https://github.com/cloudflare/kumo), [shadcn/ui](https://github.com/shadcn-ui/ui), and [coss](https://github.com/cosscom/coss). The docs code is written for this package.
-
-## Package contents
-
-- `components/ui`: All 61 component modules available for this preset.
-- `hooks`: Shared hooks, including `useIsMobile`.
-- `styles.css`: Shared theme and Tailwind CSS source paths.
-- `lib`: Shared utilities.
-- `index.ts`: Main package exports.
-- `app`: Component gallery and documentation.
-
-`pnpm pack` creates an installable archive. It includes compiled components, type declarations, and styles. It excludes the Next.js app.
-
-## Use in another app
-
-Install the compiled Git release. The app must use React 19 and Tailwind CSS 4.
+## Commands
 
 ```sh
-pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.00'
+pnpm check          # Lint, format check, and type checks for all packages
+pnpm build          # Build config, UI, and docs in dependency order
+pnpm build:packages # Build config and UI
+pnpm build:docs     # Build docs and its workspace dependencies
+pnpm fmt            # Format the workspace
+pnpm pack:ui        # Create the UI archive in artifacts/
+pnpm pack:config    # Create the config archive in artifacts/
 ```
 
-GitHub access is required. Update the tag and lockfile to use a newer release. The `v0.1.00` release preserves the original source commit and a compiled package archive. Direct Git installation starts with `v0.2.00`.
+Use `pnpm --filter @sunnie/ui <command>` or `pnpm --filter @sunnie/docs <command>` to run a package command. Build dependencies first with `pnpm build:packages` when you run the docs app directly.
 
-```tsx
-import { Button, Input, Dialog, DialogContent } from "@sunnie/ui";
+For docs hosting, set the project root to `apps/docs`. Run `pnpm --filter @sunnie/docs... build` as the build command. The host must include workspace files outside the app directory.
+
+## Use UI in another app
+
+The UI package contains compiled JavaScript, type declarations, and the `styles.css` and `typeset.css` files. It excludes docs, Next.js, and config tools. It requires React 19 and Tailwind CSS 4.
+
+For a local archive:
+
+```sh
+pnpm pack:ui
+# Run in the consuming app. Use the actual archive path.
+pnpm add /path/to/starter/artifacts/sunnie-ui-0.2.6.tgz
 ```
 
-Each component module also has a direct import path:
+For an existing compiled Git release:
+
+```sh
+pnpm add '@sunnie/ui@git+https://github.com/sunniekapar/starter.git#v0.2.06'
+```
+
+GitHub access is required. Install a compiled release tag. The source branch is a private workspace root. The workspace version uses valid semver, `0.2.6`; existing Git tags keep their original names.
 
 ```tsx
 import { Button } from "@sunnie/ui/button";
-import { Calendar } from "@sunnie/ui/calendar";
 import { useIsMobile } from "@sunnie/ui/hooks/use-mobile";
+import { cn } from "@sunnie/ui/utils";
 ```
 
-Use interactive components and hooks inside a client component. Wrap tooltips with `TooltipProvider`. Use the other providers, such as `SidebarProvider` and `ToastProvider`, where those components require them.
+The root export, such as `import { Button } from "@sunnie/ui"`, is also available. Use interactive components and hooks inside a client component. Add required providers for tooltips, sidebars, and toasts.
 
 Add these imports to the app's global CSS:
 
 ```css
 @import "tailwindcss";
 @import "@sunnie/ui/styles.css";
+/* Optional text styles for articles and other prose. */
+@import "@sunnie/ui/typeset.css";
 ```
 
-The shared stylesheet registers the compiled component files with Tailwind. Set the `--font-sans` variable to use the app's chosen font. This preview loads Inter through `next/font`.
+The stylesheet registers the compiled components with Tailwind. Set `--font-sans` and `--font-mono` in the consuming app. The optional `typeset.css` file styles content within `.typeset`. Use `.not-typeset` to exclude a block. Titles and section headings use size 18px and weight 550; subheadings use weight 500. Override the `--typeset-*` variables to change spacing.
+
+## Component docs
+
+- `apps/docs/app/_docs/catalog.ts`: Component names and example states.
+- `apps/docs/app/_docs/examples.tsx`: Examples that use the public UI exports.
+- `apps/docs/scripts/generate-docs.mjs`: Reads UI source types to generate prop tables.
+
+Prop tables are generated before development, builds, and type checks. Run `pnpm docs:generate` after a prop change during development. Generated files stay inside the docs app and are excluded from Git and package archives.
+
+Select a component to see examples and props. Use `⌘K` or `Ctrl+K` to search. Press `D` to change the color theme.
 
 ## Update components
 
-All available components were installed with:
+The components use the shadcn Base UI Luma preset, neutral colors, and Hugeicons. The app and UI package each have a `components.json` file. Run the CLI from the docs app:
 
 ```sh
-pnpm exec shadcn add --all --yes
+pnpm --dir apps/docs dlx shadcn@latest add button
 ```
 
-Keep reusable components in `components/ui`. Use relative imports with `.js` extensions within the package. The package export pattern gives each component its own import path. Add new modules to `index.ts` to expose their named exports from `@sunnie/ui` too.
+Check changes before overwriting existing components. Keep shared code in `packages/ui/src`. Use relative imports with `.js` extensions within the compiled library. Add new component exports to `packages/ui/src/index.ts`, then update the docs catalog and examples.
 
-Check generated updates before overwriting files. Some files have small changes for strict TypeScript checks, package imports, and client component boundaries. The mobile hook uses `useSyncExternalStore`. Local lint exceptions preserve the preset's ARIA roles, input focus behaviour, and carousel state setup. Run the checks and build before a release.
+Local type exports point to UI source so editors and shadcn can find the source files. `publishConfig.exports` changes those paths to compiled declarations when pnpm packs the library. JavaScript imports use the compiled package in both cases.
 
-The local configuration dependency uses `file:../config` for UI development. Compiled Git releases exclude development dependencies, so consuming apps do not need that folder.
+## Releases
 
-For a new release, update `version` in `package.json`, run the checks, and commit the source changes. Then run `pnpm release`. The command builds the UI, pushes a separate compiled package tag, and creates a GitHub release with `gh`. Use `pnpm release --prepare-only` to build the package archive without publishing it.
+UI and config use separate versions and private Git releases. Registry publication is disabled. Update the version in the package's `package.json`, run the checks, and commit the source changes before a release.
+
+```sh
+pnpm release ui --prepare-only
+pnpm release config --prepare-only
+```
+
+These commands prepare package archives without publishing. To publish, omit `--prepare-only`. UI tags use `v<version>`. Config tags use `config/v<version>`. Each tag contains only that compiled package and its runtime metadata. `pnpm release` defaults to UI.
+
+## Workspace references
+
+- [pnpm workspaces](https://pnpm.io/workspaces): Explicit local dependencies with `workspace:*`.
+- [pnpm catalogs](https://pnpm.io/catalogs): Shared dependency versions.
+- [shadcn monorepos](https://ui.shadcn.com/docs/monorepo): Separate app and UI packages with CLI routing.
+- [Vercel UI package example](https://vercel.com/academy/production-monorepos/create-ui-package): Package exports and React peer dependencies.
