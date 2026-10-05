@@ -54,32 +54,32 @@
       margin-block-start: var(--typeset-flow);
     }
     &:where(h2) {
-      font-size: 1em;
+      font-size: 18px;
       line-height: 1.5;
       margin-block-start: var(--typeset-section-gap);
     }
     &:where(h3) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 450;
+      font-weight: 500;
       margin-block-start: var(--typeset-subsection-gap);
     }
     &:where(h4) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 450;
+      font-weight: 500;
       margin-block-start: var(--typeset-subsection-gap);
     }
     &:where(h5) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 450;
+      font-weight: 500;
       margin-block-start: var(--typeset-subsection-gap);
     }
     &:where(h6) {
       font-size: 1em;
       line-height: 1.5;
-      font-weight: 450;
+      font-weight: 500;
       margin-block-start: var(--typeset-subsection-gap);
     }
     /* Anchors. */
