@@ -12,8 +12,8 @@
     --typeset-leading: 1.625;
     --typeset-flow: 1em;
     --typeset-title-flow: 1.5em;
-    --typeset-section-gap: 5em;
-    --typeset-subsection-gap: 2.5em;
+    --typeset-section-gap: 6em;
+    --typeset-subsection-gap: 2.25em;
     --typeset-subheading-flow: 0.75em;
   }
 }
@@ -49,12 +49,12 @@
       margin-block-end: 0;
     }
     &:where(h1) {
-      font-size: 18px;
+      font-size: 1em;
       line-height: var(--typeset-leading);
       margin-block-start: var(--typeset-flow);
     }
     &:where(h2) {
-      font-size: 18px;
+      font-size: 1em;
       line-height: 1.5;
       margin-block-start: var(--typeset-section-gap);
     }
